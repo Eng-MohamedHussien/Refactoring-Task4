@@ -1,10 +1,5 @@
 #include "Customer.h"
 
-bool isPremiumCustomer(const Rental *r) {
-  return r->getMovie()->getPriceCode() == PriceCodeType::NEW_RELEASE &&
-         r->getDaysRented() > 1;
-}
-
 double getBonusPoints(const Rental *r) {
   double bonusAmount = 0;
   switch (r->getMovie()->getPriceCode()) {
@@ -38,7 +33,7 @@ void Customer::loadReport(std::string &report) {
   for (auto it = m_rentals.begin(); it != m_rentals.end(); ++it) {
     double movieBonus = getBonusPoints(*it);
     frequentRenterPoints++;
-    if (isPremiumCustomer(*it)) {
+    if ((*it)->isPremiumCustomer()) {
       frequentRenterPoints++;
     }
     auto movieTitle = (*it)->getMovie()->getTitle();

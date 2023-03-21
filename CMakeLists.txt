@@ -14,3 +14,9 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(doctest)
 
 add_library(${CMAKE_PROJECT_NAME} SHARED Customer.cpp Movie.cpp Rental.cpp)
+
+add_executable(app main.cpp)
+
+target_link_libraries(app ${CMAKE_PROJECT_NAME})
+
+target_include_directories(app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
